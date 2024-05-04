@@ -11,7 +11,12 @@ except IndexError:
 start_time = time.time()
 file_count = 0
 print(f"Scanning {dir}")
-for filename in os.listdir(dir):
+try:
+    files = os.listdir(dir)
+except FileNotFoundError:
+    print(f"Directory {dir} not found")
+    sys.exit(1)
+for filename in files:
     try:
         print(f"Checking {filename}")
         if re.match(r'^Episode [\d]+', filename) is not None:
