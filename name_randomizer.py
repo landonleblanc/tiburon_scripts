@@ -27,9 +27,9 @@ if text == '--all':
     for file in os.listdir(dir):
         try:
             file_count += 1
-            new_file = rnd_str(12)
-            full_file_path = os.path.join(dir, file)
-            os.rename(full_file_path, os.path.join(dir, new_file)) 
+            extension = os.path.splitext(file)[1]
+            new_file = rnd_str(12) + extension
+            os.rename(os.path.join(dir, file), os.path.join(dir, new_file))
             print(f'{file} renamed to {new_file}')
         except Exception as e:
             print(f'Error renaming {file}: {e}')
@@ -41,8 +41,7 @@ else:
             if re.search(text, file, flags=re.IGNORECASE):
                 file_count += 1
                 new_file = re.sub(text, rnd_str(), file, flags=re.IGNORECASE)
-                full_file_path = os.path.join(dir, file)
-                os.rename(full_file_path, os.path.join(dir, new_file))
+                os.rename(os.path.join(dir, file), os.path.join(dir, new_file))
                 print(f'{file} renamed to {new_file}')
         except Exception as e:
             print(f'Error renaming {file}: {e}')
