@@ -22,7 +22,7 @@ for filename in files:
         if re.match(r'^Episode [\d]+', filename) is not None:
             print(f"Skipping {filename}")
             continue
-        pattern = r'[Ee][Pp][\.:\s]*[\d]+|[Ee][Pp][Ii][Ss][Oo][Dd][Ee][\s]*[\d]+'
+        pattern = r'[Ee][Pp][\.:\s]*[\d]+|[Ee][Pp][Ii][Ss][Oo][Dd][Ee][\s]*[\d]+|[Ee][\d]+'
         episode = re.search(pattern, filename)
         if episode is not None:
             episode_number = re.search(r'\d+', episode.group()).group()
