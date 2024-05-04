@@ -2,6 +2,7 @@ import zipfile
 import os
 import glob
 import sys
+import time
 
 def unzip(zip_file, dest_dir):
     with zipfile.ZipFile(zip_file, 'r') as zip_ref:
@@ -17,7 +18,7 @@ except IndexError:
 except FileNotFoundError:
     print(f"Directory {dir} not found")
     sys.exit(1)
-
+start_time = time.time()
 #Find all zip files in the directory
 zip_files = glob.glob(f'{dir}/*.zip')
 print(f'Found {len(zip_files)} zip files')
@@ -31,3 +32,4 @@ for zip_file in zip_files:
         print('Done!')
     except Exception as e:
         print(f'Error unzipping {zip_file}: {e}')
+print(f'Unzipped {len(zip_files)} files in {time.time() - start_time:.2f} seconds')
